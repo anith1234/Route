@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const tickets = [
+  { from: 'Paris', to: 'Skopje' },
+  { from: 'Zurich', to: 'Amsterdam' },
+  { from: 'Prague', to: 'Zurich' },
+  { from: 'Barcelona', to: 'Berlin' },
+  { from: 'Kiev', to: 'Prague' },
+  { from: 'Skopje', to: 'Paris' },
+  { from: 'Amsterdam', to: 'Barcelona' },
+  { from: 'Berlin', to: 'Kiev' },
+  { from: 'Berlin', to: 'Amsterdam' },
+];
+
+const findRoute = (tickets, start) => {
+  const route = [start];
+
+  while (route.length < tickets.length + 1) {
+    const lastCity = route[route.length - 1];
+    const nextTicket = tickets.find(ticket => ticket.from === lastCity);
+
+    if (!nextTicket) {
+      throw new Error('Invalid itinerary');
+    }
+
+    route.push(nextTicket.to);
+  }
+
+  return route;
+};
+console.log(findRoute(tickets,'Kiev'));
+    </script>
+    
+</body>
+</html>
